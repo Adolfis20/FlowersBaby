@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor Creciente</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+        .flower {
+            position: absolute;
+            width: 0;
+            height: 0;
+            transition: width 1s, height 1s;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .message {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="message" class="message">Te amo Heather</div>
+    <script>
+        let clickCount = 0;
+
+        function createFlower(x, y) {
+            clickCount++;
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = `${x - 25}px`;
+            flower.style.top = `${y - 25}px`;
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.style.width = '50px';
+                flower.style.height = '50px';
+            }, 100);
+
+            if (clickCount === 5) { // Mostrar mensaje después de 5 clics
+                document.getElementById('message').style.display = 'block';
+            }
+        }
+
+        document.body.addEventListener('click', (event) => {
+            createFlower(event.clientX, event.clientY);
+        });
+    </script>
+</body>
+</html>
